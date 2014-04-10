@@ -1,0 +1,65 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		 string firstMember = Console.ReadLine();
+        string secondMember = Console.ReadLine();
+        int l = int.Parse(Console.ReadLine());
+
+        const int shift = 64;
+        
+        int first = firstMember[0] - shift;
+        int second = secondMember[0] - shift;
+
+        int spaceBetweenMembers = 0;
+
+        if (l == 1)
+        {
+            Console.WriteLine((char)(first + shift));
+            return;
+        }
+
+        Console.WriteLine((char)(first + shift));
+        int next = first + second;
+        if (next > 26)
+        {
+            next = next % 26;
+        }
+        spaceBetweenMembers++;
+        Console.Write("{0}{1}", (char)(second + shift), (char)(next + shift));
+        first = second;
+        second = next;
+        next = first + second;
+        if (next > 26 )
+        {
+            next = next % 26;
+        }
+
+        Console.WriteLine();
+        for (int i = 3; i <= l; i++)
+        {
+            Console.Write((char)(next + shift));
+            Console.Write(new string(' ', spaceBetweenMembers));
+            first = second;
+            second = next;
+            next = first + second;
+            if (next > 26)
+            {
+                next = next % 26;
+            }
+
+            Console.Write((char)(next + shift));
+            first = second;
+            second = next;
+            next = first + second;
+            if (next > 26)
+            {
+                next = next % 26;
+            }
+            spaceBetweenMembers++;
+            Console.WriteLine();
+        }
+	}
+}
